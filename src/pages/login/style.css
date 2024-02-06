@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Roboto:wght@700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  background-color: rgba(128, 128, 128, 0.082);
+  margin: 0;
+  font-family: 'Inter', sans-serif; 
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 50vh;
+  max-height: 100vh;
+}
+
+.card {
+  width: 100%;
+  min-height: 50vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-form button {
+  width: 100%;
+ 
+}
+
+.card-form .MuiTextField-root {
+  width: 100%;
+ 
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif; 
+  font-weight: bold; 
+}
