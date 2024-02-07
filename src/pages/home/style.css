@@ -1,0 +1,41 @@
+/* Reset CSS para garantir consistência */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para o corpo da página */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+
+  }
+  
+
+ 
+
+  .sidebar-left {
+    background-color: #f4f4f4;
+    width: 20%;
+    float: left;
+  }
+  
+
+  .sidebar-right {
+    background-color: #f4f4f4;
+    width: 20%;
+    float: right;
+  }
+  
+
+  .main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50%;
+    width:20vh;
+    
+    padding: 1rem;
+  }
+  

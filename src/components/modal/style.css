@@ -1,0 +1,34 @@
+/* style.css */
+
+.new-modal {
+    padding: 20px;
+    width: 320px;
+}
+
+.modal-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent; 
+    outline: none;
+    transition: background-color 0.3s; 
+}
+
+.modal-item:hover {
+    background-color: #f0f0f0a6; 
+    outline: none;
+}
+
+.modal-item img {
+    width: 24px;
+    height: 24px;
+}
+
+.modal-divider {
+    margin: 10px 0;
+    border-top: 1px solid #ccc;
+}

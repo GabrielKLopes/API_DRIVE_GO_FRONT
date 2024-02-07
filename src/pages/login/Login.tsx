@@ -7,17 +7,19 @@ import logo from '../../assets/logo.svg';
 import { Container, Form, Logo } from './style';
 import { Button, TextField, Card, CardContent, Alert } from '@mui/material';
 import './style.css'; 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const user = await AuthService.login({ email, password });
       console.log('Login successful!', user);
+      navigate('/home');
     } catch (error) {
       console.error('Login failed!');
       setLoginError(true);
@@ -60,7 +62,7 @@ const Login: React.FC = () => {
               <Button
                 variant="contained"
                 onClick={handleLogin}
-                style={{ outline: 'none' }} // Remover a borda preta
+                style={{ outline: 'none' }} 
               >
                 Entrar
               </Button>

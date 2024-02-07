@@ -1,0 +1,35 @@
+.table-container {
+    position: fixed;
+    width: 80%;
+    max-height: 710px; 
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header {
+    border-bottom: 1px solid #ddd; 
+    padding: 8px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.table-cell {
+    padding: 8px;
+    border-bottom: 1px solid #ddd; 
+}
+
+.icon {
+    width: 24px;
+    margin-right: 8px;
+}
+.position{
+    display: flex;
+    gap: 15px;
+}

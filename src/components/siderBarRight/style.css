@@ -1,0 +1,21 @@
+
+.sidebar-right-container {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    right: 0;
+    width: 80px; 
+    background-color: #F8FAFD;
+    padding: 20px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+}
+
+.sidebar-image {
+    width: 30px;
+    height: 30px; 
+}
+  

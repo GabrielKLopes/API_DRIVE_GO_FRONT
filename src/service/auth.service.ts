@@ -7,9 +7,7 @@ export const AuthService = {
     try {
       const response = await api.post('/session/authorization', credentials);
       Cookies.set('token', response.data.token);
-      
       return response.data.username;
-      
     } catch (error) {
       throw new Error('Falha no login');
     }
@@ -18,4 +16,6 @@ export const AuthService = {
   logout: async () => {
     Cookies.remove('token');
   },
+
+  getToken: () => Cookies.get('token')
 };

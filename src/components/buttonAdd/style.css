@@ -1,0 +1,30 @@
+
+.add-button-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 8rem;
+  height: 4rem;
+  border-radius: 1rem; 
+  background-color: #ffffff; 
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s, box-shadow 0.3s; 
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.add-button-container:hover {
+  background-color: #F8FAFD; 
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aumente a intensidade da sombra no hover */
+}
+
+.add-button-icon {
+  margin-right: 1.5rem; 
+ 
+}
+
+.add-button-text {
+  font-size: 14px;
+  font-weight: 500;
+}

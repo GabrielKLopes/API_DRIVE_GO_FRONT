@@ -1,0 +1,15 @@
+.button-icon-container {
+  display: flex;
+  align-items: center;
+  gap: 30px; 
+    
+  }
+  
+  .icon {
+    margin-right: 8px; 
+  }
+  
+  .avatar {
+    margin-left: 7px; 
+    
+  }
