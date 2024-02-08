@@ -66,7 +66,7 @@ const TableComponent =({ data } : Props) => {
             <th className="table-header">Nome</th>
             <th className="table-header">Proprietário</th>
             <th className="table-header">Data de Modificação</th>
-            <th className="table-header">Tamanho (em bytes)</th>
+            <th className="table-header">Tamanho do</th>
           </tr>
           
         </thead>
