@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import folder from "../../assets/folder.svg";
 import gdocs from "../../assets/gdocs.svg";
 import gsheets from "../../assets/gsheets.svg";
@@ -11,6 +11,7 @@ import "./style.css";
 import NewModalOption from "../modalOptions";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { getLoggedUserPermissionFiled } from "../../service/authUtils.service";
 
 interface DriveItemCommon {
   path: string;
@@ -66,8 +67,20 @@ const TableComponent = ({ data, setData }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedItem, setSelectedItem] = useState<
+  
     FileItem | FolderItem | null
   >(null);
+  const [userPermissionId, setUserPermissionId] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchPermissionFileId = async () => {
+      const permissionFileId = await getLoggedUserPermissionFiled();
+      setUserPermissionId(permissionFileId);
+      console.log("permissionFileId:", permissionFileId); 
+    };
+
+    fetchPermissionFileId();
+  }, []);
 
   const handleNewButtonClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -88,10 +101,10 @@ const TableComponent = ({ data, setData }: Props) => {
 
     let url;
     if ("file_id" in selectedItem) {
-      // Se for um arquivo, construa a URL de exclusão de arquivo
+      
       url = `http://localhost:3000/session/file/${selectedItem.file_id}`;
     } else {
-      // Se for uma pasta, construa a URL de exclusão de pasta
+     
       url = `http://localhost:3000/session/folder/${selectedItem.folder_id}`;
     }
 
@@ -166,9 +179,10 @@ const TableComponent = ({ data, setData }: Props) => {
                     <button
                       onClick={(event) => handleNewButtonClick(event, item)}
                       className="button-options"
+                      disabled={userPermissionId === 3}
                     >
-                      <IconButton aria-label="Opções">
-                        <MoreVertIcon />
+                      <IconButton aria-label="Opções" disabled={userPermissionId === 3} >
+                        <MoreVertIcon  />
                       </IconButton>
                     </button>
                   </td>
@@ -195,8 +209,9 @@ const TableComponent = ({ data, setData }: Props) => {
                     <button
                       onClick={(event) => handleNewButtonClick(event, item)}
                       className="button-options"
+                      disabled={userPermissionId === 3}
                     >
-                      <IconButton aria-label="Opções">
+                      <IconButton aria-label="Opções"  disabled={userPermissionId === 3} >
                         <MoreVertIcon />
                       </IconButton>
                     </button>

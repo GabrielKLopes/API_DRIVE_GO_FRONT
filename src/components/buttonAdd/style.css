@@ -16,7 +16,7 @@
 .add-button-container:hover {
   background-color: #F8FAFD; 
 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aumente a intensidade da sombra no hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .add-button-icon {

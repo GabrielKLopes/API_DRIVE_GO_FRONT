@@ -1,0 +1,70 @@
+.table-container {
+    position: fixed;
+    width: 100%;
+    left: 32vh;
+    top: 200px; 
+    max-height: 710px; 
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+  
+  .table-wrapper {
+  
+        width: 100%;
+        border-collapse: collapse;
+    
+  }
+  
+  .table-header {
+    border-bottom: 1px solid #ddd; 
+    padding: 8px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .table-cell {
+    padding: 8px;
+  }
+.buttonAdd{
+    position: fixed;
+    
+    left: 32vh;
+    top: 120px; 
+    max-height: 710px; 
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.add-button-container-user {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 12rem;
+    height: 4rem;
+    border-radius: 1rem; 
+    background-color: #ffffff; 
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s; 
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .add-button-container-user:hover {
+    background-color: #F8FAFD; 
+  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .add-button-icon {
+    margin-right: 1.5rem; 
+   
+  }
+  
+  .add-button-text {
+    font-size: 14px;
+    font-weight: 500;
+  }

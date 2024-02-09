@@ -1,0 +1,17 @@
+.modal-title {
+    background-color: #2196f3;
+    color: #ffff;
+  }
+  
+  .add-user-modal {
+    max-width: 500px;
+  }
+  
+  .add-user-modal .MuiDialogContent-root {
+    padding: 20px;
+  }
+  
+  .add-user-modal .MuiFormControl-root {
+    margin-top: 10px;
+  }
+  

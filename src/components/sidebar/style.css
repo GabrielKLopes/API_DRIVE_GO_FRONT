@@ -44,10 +44,18 @@
   border-radius: 50px; 
   color: #0B57D0; 
   padding: 20px 40px;
-  transition: background-color 0.3s; /* Adiciona uma transição suave */
+  transition: background-color 0.3s; 
 }
 
 .container-3 button:hover {
   background-color: #5990e933; 
-  border: 1px solid #000000;/* Altera a cor de fundo quando o mouse passa sobre o botão */
+  border: 1px solid #000000;/
+}
+
+.button-user {
+  background-color: transparent;
+  transition: background-color 0.3s;
+  border: none; 
+  padding: 0;
+  margin-left: -1px; 
 }

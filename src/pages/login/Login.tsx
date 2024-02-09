@@ -19,13 +19,13 @@ const Login: React.FC = () => {
     try {
       const user = await AuthService.login({ email, password });
       console.log('Login successful!', user);
+      
       navigate('/home');
     } catch (error) {
       console.error('Login failed!');
       setLoginError(true);
     }
   };
-
   const handleCloseAlert = () => {
     setLoginError(false);
   };
