@@ -25,35 +25,36 @@ interface ShareFolderModalProps {
 }
 
 const ShareFolderModal = ({ open, onClose, currentItem }: ShareFolderModalProps) => {
-    const [email, setEmail] = useState('');
-  
-    const handleShare = async () => {
-      try {
-        const token = Cookies.get("token");
-        if (!currentItem || 'file_id' in currentItem) {
-          console.error("Não é possível compartilhar um arquivo.");
-          return;
-        }
-  
-        const response = await axios.post(
-          `http://localhost:3000/session/shared-folder/${currentItem.folder_id}`,
-          { email: email },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log("Compartilhamento realizado com sucesso:", response.data);
-        onClose();
-      } catch (error) {
-        console.error("Erro ao compartilhar pasta:", error);
+  const [email, setEmail] = useState('');
+
+  const handleShare = async () => {
+    try {
+      const token = Cookies.get("token");
+      if (!currentItem || 'file_id' in currentItem) {
+        console.error("Não é possível compartilhar um arquivo.");
+        return;
       }
-    };
-  
-    const handleCancel = () => {
-      onClose(); 
-    };
+
+      const response = await axios.post(
+        `http://localhost:3000/session/shared-folder/${currentItem.folder_id}`,
+        { email: email },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Compartilhamento realizado com sucesso:", response.data);
+      onClose();
+    } catch (error) {
+      console.error("Erro ao compartilhar pasta:", error);
+      // Trate o erro conforme necessário
+    }
+  };
+
+  const handleCancel = () => {
+    onClose(); 
+  };
 
   return (
     <Modal open={open}>

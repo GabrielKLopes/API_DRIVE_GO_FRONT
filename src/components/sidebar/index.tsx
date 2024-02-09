@@ -18,7 +18,7 @@ import NewModal from "../modal";
 import "./style.css";
 import UserTable from "../User/index";
 import { getLoggedUserPermissionFiled } from "../../service/authUtils.service";
-
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 const Sidebar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -133,8 +133,13 @@ const Sidebar = () => {
       <NewModal open={isModalOpen} onClose={handleCloseModal} anchorEl={anchorEl} />
       {showUserTable && <UserTable />}
       <div>
+      <div className="container-5">
+  <button onClick={handleLogout} style={{ display: 'flex', alignItems: 'center' }}>
+    <ExitToAppIcon style={{ verticalAlign: 'middle' }} />Sair
+  </button>
+</div>
       
-      <button onClick={handleLogout}>Sair</button>
+      
     </div>
     </div>
   );

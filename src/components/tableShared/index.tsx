@@ -6,7 +6,7 @@ import NavBar from "../navbar";
 import SidebarRight from "../siderBarRight";
 import { getLoggedUserid } from "../../service/authUtils.service";
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
-import { format, isValid } from "date-fns"; // Importa a função format e isValid de date-fns
+import { format, isValid } from "date-fns"; 
 
 export interface SharedData {
   sharedFolder_id: number;

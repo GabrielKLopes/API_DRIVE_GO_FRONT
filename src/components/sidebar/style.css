@@ -59,3 +59,23 @@
   padding: 0;
   margin-left: -1px; 
 }
+
+.container-3 span {
+  font-size: 14px;
+}
+
+.container-4 button {
+  margin-bottom: 15px;
+  background-color: transparent;
+  border: 1px solid #000000;
+  border-radius: 50px; 
+  color: #0B57D0; 
+  padding: 20px 40px;
+  transition: background-color 0.3s; 
+}
+
+.container-4 button:hover {
+  background-color: #5990e933; 
+  border: 1px solid #000000;/
+}
+
