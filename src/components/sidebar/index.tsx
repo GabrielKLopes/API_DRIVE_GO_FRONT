@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from "js-cookie";
 import SidebarItem from "../sidebarItem";
 import HomeIcon from "@mui/icons-material/Home";
 import BackupTableOutlinedIcon from "@mui/icons-material/BackupTableOutlined";
@@ -51,10 +51,19 @@ const Sidebar = () => {
     setShowUserTable(!showUserTable);
     navigate("/session/user");
   };
+  const handleSharedButtonClick = () => {
+    setShowUserTable(!showUserTable);
+    navigate("/session/shared");
+  };
 
   const handleMyDriveButtonClick = () => {
     setShowUserTable(!showUserTable);
     navigate("/home");
+  };
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    navigate("/");
   };
 
   return (
@@ -79,10 +88,13 @@ const Sidebar = () => {
         </div>
 
         <div className="container-2">
-          <SidebarItem
-            icon={<PeopleOutlineOutlinedIcon />}
-            text="Compartilhados comigo"
-          />
+        <button className="button-user" onClick={handleSharedButtonClick}>
+            <SidebarItem
+              icon={<PeopleOutlineOutlinedIcon />}
+              text="Compartilhados comigo"
+            />
+          </button>
+        
           <SidebarItem icon={<WatchLaterOutlinedIcon />} text="Recentes" />
           <SidebarItem
             icon={<StarBorderOutlinedIcon />}
@@ -120,6 +132,10 @@ const Sidebar = () => {
       </div>
       <NewModal open={isModalOpen} onClose={handleCloseModal} anchorEl={anchorEl} />
       {showUserTable && <UserTable />}
+      <div>
+      
+      <button onClick={handleLogout}>Sair</button>
+    </div>
     </div>
   );
 };

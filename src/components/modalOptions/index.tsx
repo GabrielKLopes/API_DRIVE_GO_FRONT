@@ -9,9 +9,10 @@ import FolderCopyOutlinedIcon from '@mui/icons-material/FolderCopyOutlined';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import './style.css';
 import NewFolderRenameModal from '../modelRename';
+import ShareFolderModal from '../sharedModal';
 import axios from 'axios';
 import OpenWithIcon from '@mui/icons-material/OpenWith';
-import Cookies from 'js-cookie'; 
+import Cookies from 'js-cookie';
 
 interface DriveItemCommon {
     path: string;
@@ -19,19 +20,19 @@ interface DriveItemCommon {
     shared: boolean;
     user_id: number;
     user?: {
-      username: string;
+        username: string;
     };
 }
-  
+
 interface FileItem extends DriveItemCommon {
     file_id: number;
     filename: string;
     size: number;
     fileType?: {
-      name: string;
+        name: string;
     };
 }
-  
+
 interface FolderItem extends DriveItemCommon {
     folder_id: number;
     foldername: string;
@@ -41,18 +42,26 @@ interface NewModalOptionsProps {
     open: boolean;
     onClose: () => void;
     anchorEl: HTMLElement | null;
-    onDelete: () => void;  
+    onDelete: () => void;
     currentItem: FileItem | FolderItem | null;
     data: (FileItem | FolderItem)[];
     setData: React.Dispatch<React.SetStateAction<(FileItem | FolderItem)[]>>;
 }
 
 const NewModalOption = ({ open, onClose, anchorEl, onDelete, currentItem, data, setData }: NewModalOptionsProps) => {
-    const [renameModalOpen, setRenameModalOpen] = useState(false); 
+    const [renameModalOpen, setRenameModalOpen] = useState(false);
+    const [shareModalOpen, setShareModalOpen] = useState(false);
 
     const handleRenameClick = () => {
-        setRenameModalOpen(true); 
-        onClose(); 
+        setRenameModalOpen(true);
+        onClose();
+    };
+
+    const handleShareClick = () => {
+        if (currentItem && 'folder_id' in currentItem) {
+            setShareModalOpen(true); 
+        }
+        onClose();
     };
 
     const handleRenameSubmit = async (newName: string) => {
@@ -60,7 +69,7 @@ const NewModalOption = ({ open, onClose, anchorEl, onDelete, currentItem, data, 
             let endpoint: string;
             let fieldName: string;
             const token = Cookies.get("token");
-    
+
             if ('file_id' in currentItem) {
                 endpoint = `http://localhost:3000/session/file/${currentItem.file_id}`;
                 fieldName = 'filename';
@@ -72,12 +81,12 @@ const NewModalOption = ({ open, onClose, anchorEl, onDelete, currentItem, data, 
                 setRenameModalOpen(false);
                 return;
             }
-    
+
             try {
                 const response = await axios.put(endpoint, { [fieldName]: newName }, { headers: { Authorization: `Bearer ${token}` } });
                 console.log("Resposta do servidor:", response.data);
-    
-                
+
+
                 const updatedData = data.map(item => {
                     if ('file_id' in item && 'file_id' in currentItem && item.file_id === currentItem.file_id) {
                         return { ...item, [fieldName]: newName };
@@ -86,8 +95,8 @@ const NewModalOption = ({ open, onClose, anchorEl, onDelete, currentItem, data, 
                     }
                     return item;
                 });
-    
-                
+
+
                 setData(updatedData);
             } catch (error) {
                 console.error("Erro ao enviar requisição:", error);
@@ -95,10 +104,10 @@ const NewModalOption = ({ open, onClose, anchorEl, onDelete, currentItem, data, 
         } else {
             console.error("Nenhum item selecionado para renomear.");
         }
-    
+
         setRenameModalOpen(false);
     };
-    
+
 
     return (
         <>
@@ -115,17 +124,17 @@ const NewModalOption = ({ open, onClose, anchorEl, onDelete, currentItem, data, 
                     horizontal: 'left',
                 }}
             >
-              
+
                 <div className="new-modal">
-                <button className="modal-item">
-                    <OpenWithIcon />
-                    <span>Abrir com</span>
-                </button>
-                <hr className="modal-divider" />
-                <button className="modal-item" >
-                    <SaveAltIcon />
-                    <span>Fazer download</span>
-                </button>
+                    <button className="modal-item">
+                        <OpenWithIcon />
+                        <span>Abrir com</span>
+                    </button>
+                    <hr className="modal-divider" />
+                    <button className="modal-item" >
+                        <SaveAltIcon />
+                        <span>Fazer download</span>
+                    </button>
                     <button className="modal-item" onClick={handleRenameClick}>
                         <DriveFileRenameOutlineIcon />
                         <span>Renomear</span>
@@ -135,10 +144,11 @@ const NewModalOption = ({ open, onClose, anchorEl, onDelete, currentItem, data, 
                         <SaveAltIcon />
                         <span>Fazer download</span>
                     </button>
-                    <button className="modal-item" >
+                    <button className="modal-item" disabled={currentItem && 'file_id' in currentItem ? true : false} onClick={handleShareClick}>
                         <PersonAddAltIcon />
                         <span>Compartilhar</span>
                     </button>
+
                     <button className="modal-item" >
                         <FolderCopyOutlinedIcon />
                         <span>Organizar</span>
@@ -148,7 +158,7 @@ const NewModalOption = ({ open, onClose, anchorEl, onDelete, currentItem, data, 
                         <span>Informações da pasta</span>
                     </button>
                     <hr className="modal-divider" />
-                    <button className="modal-item" onClick={onDelete}> 
+                    <button className="modal-item" onClick={onDelete}>
                         <DeleteOutlineOutlinedIcon />
                         <span>Remover</span>
                     </button>
@@ -161,7 +171,15 @@ const NewModalOption = ({ open, onClose, anchorEl, onDelete, currentItem, data, 
                     onSubmit={handleRenameSubmit}
                     currentItem={currentItem}
                 />
+
             )}
+            {shareModalOpen && (
+                <ShareFolderModal
+                    open={shareModalOpen}
+                    onClose={() => setShareModalOpen(false)}
+                    currentItem={currentItem}
+                />)}
+
         </>
     );
 };

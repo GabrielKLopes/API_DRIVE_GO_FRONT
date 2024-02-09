@@ -5,6 +5,7 @@ import Login from '../pages/login/Login';
 import Register from '../pages/register/Register';
 import Home from '../pages/home';
 import UserTable from '../components/User';
+import SharedTableGet from '../components/tableShared';
 
 const LoginRoutes: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const LoginRoutes: React.FC = () => {
       <Route path="/home" element={<Home/>} />
       <Route path="/register/user" element={<Register/>} />
       <Route path="/session/user" element={<UserTable/>} />
+      <Route path="/session/shared" element={<SharedTableGet/>} />
     </Routes>
   );
 };
