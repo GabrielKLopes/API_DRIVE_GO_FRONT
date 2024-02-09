@@ -35,5 +35,7 @@ Se você tiver algum feedback, por favor nos deixe saber por meio de fake@fake.c
   cd DRIVE-GO-FRONT
   npm i
   npm run dev
+
+observação se houver não conseguir realizar o login após fazer todos os procedimentos, basta criar um novo usuário, provavelmente o hash do bycript está fazendo com que de senha inválida 
 ```
     
