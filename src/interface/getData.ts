@@ -1,22 +1,27 @@
 import axios from 'axios';
 
-interface FileItem {
-  filename: string;
+interface DriveItemCommon {
   path: string;
-  size: number;
   updated_at: string;
   shared: boolean;
   user_id: number;
-  username: string;
+  user?: {
+    username: string;
+  };
 }
 
-interface FolderItem {
+interface FileItem extends DriveItemCommon {
+  file_id: number;
+  filename: string;
+  size: number;
+  fileType?: {
+    name: string;
+  };
+}
+
+interface FolderItem extends DriveItemCommon {
+  folder_id: number; 
   foldername: string;
-  path: string;
-  updated_at: string;
-  shared: boolean;
-  user_id: number;
-  username: string;
 }
 
 interface UserData {

@@ -9,15 +9,22 @@ import gforms from '../../assets/gforms.svg';
 import Cookies from 'js-cookie';
 import './style.css';
 import NewFolderModal from '../modalFolder/index';
+import NewFileModal from '../modalFile';
 import axios from 'axios';
+
+
 interface NewModalProps {
     open: boolean;
     onClose: () => void;
     anchorEl: HTMLElement | null;
+    
 }
+
+
 
 const NewModal = ({ open, onClose, anchorEl }: NewModalProps) => {
     const [isNewFolderModalOpen, setIsNewFolderModalOpen] = useState(false);
+    const [isNewFileModalOpen, setIsNewFileModalOpen] = useState(false);
 
     const handleNewFolderClick = () => {
         setIsNewFolderModalOpen(true);
@@ -49,6 +56,37 @@ const NewModal = ({ open, onClose, anchorEl }: NewModalProps) => {
             });
     };
 
+    const handleNewFileClick = () => {
+        setIsNewFileModalOpen(true);
+    };
+
+    const handleNewFileClose = () => {
+        setIsNewFileModalOpen(false);
+    };
+
+    const handleNewFileSubmit = (fileName: string) => {
+        const newFileData = {
+            filename: fileName,
+            path: '/default/path', 
+            size: 0, 
+            fileType_id: 1, 
+        };
+        
+    
+        const token = Cookies.get('token');
+    
+        axios.post('http://localhost:3000/session/file', newFileData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then(response => {
+            console.log('Resposta do servidor:', response.data);
+        })
+        .catch(error => {
+            console.error('Erro ao criar novo arquivo:', error);
+        });
+    };
     return (
         <Popover
             open={open}
@@ -69,7 +107,7 @@ const NewModal = ({ open, onClose, anchorEl }: NewModalProps) => {
                     <span>Nova Pasta</span>
                 </button>
                 <hr className="modal-divider" />
-                <button className="modal-item" onClick={handleNewFolderClick}>
+                <button className="modal-item" onClick={handleNewFileClick}>
                     <UploadFileOutlinedIcon />
                     <span>Novo arquivo</span>
                 </button>
@@ -99,6 +137,9 @@ const NewModal = ({ open, onClose, anchorEl }: NewModalProps) => {
                 onClose={handleNewFolderClose}
                 onSubmit={handleNewFolderSubmit}
             />
+            <NewFileModal open={isNewFileModalOpen} 
+            onClose = {handleNewFileClose} 
+             onSubmit={handleNewFileSubmit}/>
             </div>
         </Popover>
     );

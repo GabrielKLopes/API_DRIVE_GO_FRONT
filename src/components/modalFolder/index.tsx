@@ -51,7 +51,7 @@ const NewFolderModal = ({ open, onClose, onSubmit }: NewFolderModalProps) => {
               value={folderName}
               onChange={(e) => setFolderName(e.target.value)}
               onFocus={handleFocus}
-              placeholder="Pasta sem nome"
+              placeholder="Exemplo pasta"
             />
           </div>
           <div className="button">

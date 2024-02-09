@@ -7,37 +7,36 @@ import SidebarRight from '../../components/siderBarRight';
 import TableComponent from '../../components/table';
 import { getData, getUserData } from '../../interface/getData'; 
 
-interface FileItem {
-  filename: string;
+interface DriveItemCommon {
   path: string;
-  size: number;
   updated_at: string;
   shared: boolean;
   user_id: number;
   user?: {
     username: string;
   };
+}
+
+interface FileItem extends DriveItemCommon {
+  file_id: number;
+  filename: string;
+  size: number;
   fileType?: {
     name: string;
   };
 }
 
-interface FolderItem {
+interface FolderItem extends DriveItemCommon {
+  folder_id: number; 
   foldername: string;
-  path: string;
-  updated_at: string;
-  shared: boolean;
-  user_id: number;
-  user?: {
-    username: string;
-  };
 }
-
 interface UserData {
   username: string;
 }
 
 export type DriveItem = FileItem | FolderItem;
+
+
 
 const Home = () => {
   const [data, setData] = useState<DriveItem[]>([]);
@@ -81,7 +80,7 @@ const Home = () => {
       <main className="main-content">
         {userData && <p>Bem-vindo, {userData.username}!</p>}
         <div className="card">
-          <TableComponent data={data} />
+          <TableComponent data={data}  setData={setData}/>
         </div>
       </main>
     </div>
